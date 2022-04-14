@@ -1,14 +1,25 @@
 apiVersion: v1
 entries:
-  deploy:
+  full:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-04-13T22:58:55.6311006-05:00"
+    created: "2022-04-13T23:51:27.8260189-05:00"
     description: A Helm chart for Kubernetes
-    digest: 4e19c4fcadbb870c034999fad19de7172d9e0b6258fb18849c1a3cf43790b5fb
-    name: deploy
+    digest: 73a4d054b4735e03addd4309bfa6ef4684ce64f119f694b91be089f16499a3f3
+    name: full
     type: application
     urls:
-    - https://raw.githubusercontent.com/megan-starr9/TechOfMany/main/deploy/deploy-0.1.0.tgz
+    - https://raw.githubusercontent.com/megan-starr9/TechOfMany/main/deploy/full-0.1.0.tgz
     version: 0.1.0
-generated: "2022-04-13T22:58:55.6300994-05:00"
+  simple:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2022-04-13T23:51:27.8260189-05:00"
+    description: A Helm chart for Kubernetes
+    digest: 3e86a877a49d0cffc9483c4d11045978ee4d82423ae136b2fb33d5280ce0cd9a
+    name: simple
+    type: application
+    urls:
+    - https://raw.githubusercontent.com/megan-starr9/TechOfMany/main/deploy/simple-0.1.0.tgz
+    version: 0.1.0
+generated: "2022-04-13T23:51:27.8255192-05:00"
