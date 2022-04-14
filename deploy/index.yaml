@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  deploy:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2022-04-13T22:58:55.6311006-05:00"
+    description: A Helm chart for Kubernetes
+    digest: 4e19c4fcadbb870c034999fad19de7172d9e0b6258fb18849c1a3cf43790b5fb
+    name: deploy
+    type: application
+    urls:
+    - https://raw.githubusercontent.com/megan-starr9/TechOfMany/main/deploy/deploy-0.1.0.tgz
+    version: 0.1.0
+generated: "2022-04-13T22:58:55.6300994-05:00"
