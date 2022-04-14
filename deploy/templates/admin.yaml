@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-{{ .Release.Name }}-admin
+  labels:
+    app: {{ .Release.Name }}
+    tier: admin
+spec:
+  replicas: {{ .Values.admin.replicas }}
+  revisionHistoryLimit: {{ .Values.admin.revisionHistoryLimit }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+      tier: admin
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+        tier: admin
+    spec:
+      containers:
+      - name: k8s-{{ .Release.Name }}-admin
+        image: "{{ .Values.image.repository }}/{{ .Release.Name }}:{{ .Values.image.version }}"
+        command: ["npm", "run", "start", "-w", "admin"]
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: ROOT_URL
+          value: "{{ .Values.admin.protocol }}://{{ .Values.admin.domain }}"
+        - name: MONGODB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secrets
+              key: USERNAME
+        - name: MONGODB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secrets
+              key: PASSWORD
+        - name: TOKEN_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: session-secrets
+              key: TOKEN
+        ports:
+        - name: entry
+          containerPort: {{ .Values.admin.port }}
+        resources:
+          requests:
+            cpu: 100m
+          limits:
+            cpu: 100m
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-{{ .Release.Name }}-admin
+spec:
+  type: NodePort
+  selector:
+    app: {{ .Release.Name }}
+    tier: admin
+  ports:
+  - protocol: TCP
+    port: {{ .Values.admin.port }}
+    targetPort: entry

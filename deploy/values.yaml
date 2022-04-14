@@ -1,0 +1,19 @@
+image:
+  repository: local
+  version: latest
+imagePullSecrets:
+  - name: regcred
+
+public:
+  protocol: http
+  domain: techofmany.com
+  port: 3001
+  replicas: 1
+  revisionHistoryLimit: 1
+
+admin:
+  protocol: http
+  domain: admin.techofmany.com
+  port: 4001
+  replicas: 1
+  revisionHistoryLimit: 1
