@@ -34,12 +34,12 @@ spec:
         - name: MONGODB_USERNAME
           valueFrom:
             secretKeyRef:
-              name: mongodb-secrets
+              name: db-auth-secret
               key: USERNAME
         - name: MONGODB_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mongodb-secrets
+              name: db-auth-secret
               key: PASSWORD
         - name: TOKEN_SECRET
           valueFrom:
