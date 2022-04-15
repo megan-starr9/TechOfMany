@@ -44,7 +44,7 @@ spec:
         - name: TOKEN_SECRET
           valueFrom:
             secretKeyRef:
-              name: session-secrets
+              name: token-secret
               key: TOKEN
         ports:
         - containerPort: {{ .Values.admin.port }}
