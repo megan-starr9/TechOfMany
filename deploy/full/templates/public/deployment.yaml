@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: k8s-{{ .Release.Name }}
+  name: k8s-{{ .Values.projectName }}
   labels:
-    app: {{ .Release.Name }}
+    app: {{ .Values.projectName }}
     tier: public
 spec:
   replicas: {{ .Values.public.replicas }}
   revisionHistoryLimit: {{ .Values.public.revisionHistoryLimit }}
   selector:
     matchLabels:
-      app: {{ .Release.Name }}
+      app: {{ .Values.projectName }}
       tier: public
   strategy:
     rollingUpdate:
@@ -20,12 +20,12 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}
+        app: {{ .Values.projectName }}
         tier: public
     spec:
       containers:
-      - name: k8s-{{ .Release.Name }}
-        image: {{ .Values.image.repository }}/{{ .Release.Name }}:{{ .Values.image.version }}
+      - name: k8s-{{ .Values.projectName }}
+        image: {{ .Values.image.repository }}/{{ .Values.projectName }}:{{ .Values.image.version }}
         command: ["npm", "run", "start", "-w", "site"]
         imagePullPolicy: IfNotPresent
         env:

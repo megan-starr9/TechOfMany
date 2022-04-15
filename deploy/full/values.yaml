@@ -1,3 +1,5 @@
+projectName: techofmany
+
 image:
   repository: local
   version: latest
