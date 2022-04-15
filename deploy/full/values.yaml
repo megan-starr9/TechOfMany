@@ -17,3 +17,11 @@ admin:
   port: 4001
   replicas: 1
   revisionHistoryLimit: 1
+
+database:
+  image: mongo:latest
+  volumeSize: 10Gi
+  port: 27017
+  auth:
+    userEnv: MONGO_INITDB_ROOT_USERNAME
+    passEnv: MONGO_INITDB_ROOT_PASSWORD

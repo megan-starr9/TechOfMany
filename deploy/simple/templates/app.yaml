@@ -26,26 +26,11 @@ spec:
       containers:
       - name: k8s-{{ .Release.Name }}
         image: {{ .Values.image.repository }}/{{ .Release.Name }}:{{ .Values.image.version }}
-        command: ["npm", "run", "start", "-w", "site"]
+        command: {{ .Values.app.cmd }}
         imagePullPolicy: IfNotPresent
         env:
         - name: ROOT_URL
           value: "{{ .Values.app.protocol }}://{{ .Values.app.domain }}"
-        - name: MONGODB_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: mongodb-secrets
-              key: USERNAME
-        - name: MONGODB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mongodb-secrets
-              key: PASSWORD
-        - name: TOKEN_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: session-secrets
-              key: TOKEN
         ports:
         - name: entry
           containerPort: {{ .Values.app.port }}

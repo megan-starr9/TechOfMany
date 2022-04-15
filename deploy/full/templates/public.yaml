@@ -31,20 +31,20 @@ spec:
         env:
         - name: ROOT_URL
           value: "{{ .Values.public.protocol }}://{{ .Values.public.domain }}"
-        - name: MONGODB_USERNAME
+        - name: {{ .Values.database.auth.userEnv }}
           valueFrom:
             secretKeyRef:
-              name: mongodb-secrets
+              name: db-auth-secret
               key: USERNAME
-        - name: MONGODB_PASSWORD
+        - name: {{ .Values.database.auth.passEnv }}
           valueFrom:
             secretKeyRef:
-              name: mongodb-secrets
+              name: db-auth-secret
               key: PASSWORD
         - name: TOKEN_SECRET
           valueFrom:
             secretKeyRef:
-              name: session-secrets
+              name: session-secret
               key: TOKEN
         ports:
         - name: entry
