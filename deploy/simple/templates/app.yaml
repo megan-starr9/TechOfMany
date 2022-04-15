@@ -32,8 +32,7 @@ spec:
         - name: ROOT_URL
           value: "{{ .Values.app.protocol }}://{{ .Values.app.domain }}"
         ports:
-        - name: entry
-          containerPort: {{ .Values.app.port }}
+        - containerPort: {{ .Values.app.port }}
         resources:
           requests:
             cpu: 100m
@@ -57,4 +56,4 @@ spec:
   ports:
   - protocol: TCP
     port: {{ .Values.app.port }}
-    targetPort: entry
+    targetPort: {{ .Values.app.port }}

@@ -47,8 +47,7 @@ spec:
               name: session-secret
               key: TOKEN
         ports:
-        - name: entry
-          containerPort: {{ .Values.public.port }}
+        - containerPort: {{ .Values.public.port }}
         resources:
           requests:
             cpu: 100m
@@ -72,4 +71,4 @@ spec:
   ports:
   - protocol: TCP
     port: {{ .Values.public.port }}
-    targetPort: entry
+    targetPort: {{ .Values.public.port }}

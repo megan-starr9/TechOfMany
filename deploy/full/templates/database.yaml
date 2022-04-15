@@ -58,8 +58,7 @@ spec:
               name: db-auth-secret
               key: PASSWORD
         ports:
-        - name: entry
-          containerPort: {{ .Values.database.port }}
+        - containerPort: {{ .Values.database.port }}
         resources:
           requests:
             cpu: 100m
