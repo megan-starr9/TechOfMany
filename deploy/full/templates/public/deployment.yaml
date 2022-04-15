@@ -57,18 +57,3 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: k8s-{{ .Release.Name }}
-spec:
-  type: NodePort
-  selector:
-    app: {{ .Release.Name }}
-    tier: public
-  ports:
-  - protocol: TCP
-    port: {{ .Values.public.port }}
-    targetPort: {{ .Values.public.port }}
