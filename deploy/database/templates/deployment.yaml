@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: k8s-database
+  name: {{ .Release.Name }}-db
   labels:
-    app: tools
+    app: {{ .Release.Name }}
     tier: database
 spec:
   replicas: 1
   revisionHistoryLimit: 1
   selector:
     matchLabels:
-      app: tools
+      app: {{ .Release.Name }}
       tier: database
   strategy:
     rollingUpdate:
@@ -20,11 +20,11 @@ spec:
   template:
     metadata:
       labels:
-        app: tools
+        app: {{ .Release.Name }}
         tier: database
     spec:
       containers:
-      - name: k8s-database
+      - name: {{ .Release.Name }}-db
         image: {{ .Values.database.image }}
         imagePullPolicy: IfNotPresent
         args:
@@ -49,12 +49,12 @@ spec:
           limits:
             cpu: 100m
         volumeMounts:
-          - name: database-persistent-storage
+          - name: {{ .Release.Name }}-db-storage
             mountPath: /data/db
       volumes:
-      - name: database-persistent-storage
+      - name: {{ .Release.Name }}-db-storage
         persistentVolumeClaim:
-          claimName: database-volume-claim
+          claimName: {{ .Release.Name }}-db-claim
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}

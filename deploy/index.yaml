@@ -1,25 +1,36 @@
 apiVersion: v1
 entries:
+  database:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2022-04-14T22:09:59.7907181-05:00"
+    description: A Helm chart for Kubernetes
+    digest: dbd8a4f5e11b2e2f14141833bb51bec28b1d11d8a98a85e427932cacfa5bc701
+    name: database
+    type: application
+    urls:
+    - database-0.1.0.tgz
+    version: 0.1.0
   full:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-04-13T23:51:27.8260189-05:00"
+    created: "2022-04-14T22:09:59.7907181-05:00"
     description: A Helm chart for Kubernetes
-    digest: 73a4d054b4735e03addd4309bfa6ef4684ce64f119f694b91be089f16499a3f3
+    digest: 5f4f2b25fe065f4523994519ae743e8556a7c4a22e93e71b903db334df8a9698
     name: full
     type: application
     urls:
-    - https://raw.githubusercontent.com/megan-starr9/TechOfMany/main/deploy/full-0.1.0.tgz
+    - full-0.1.0.tgz
     version: 0.1.0
   simple:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-04-13T23:51:27.8260189-05:00"
+    created: "2022-04-14T22:09:59.7912046-05:00"
     description: A Helm chart for Kubernetes
-    digest: 3e86a877a49d0cffc9483c4d11045978ee4d82423ae136b2fb33d5280ce0cd9a
+    digest: d2c220ccc12436520bda82f2506bd014293c1468912e47843cdd9d48c1357efa
     name: simple
     type: application
     urls:
-    - https://raw.githubusercontent.com/megan-starr9/TechOfMany/main/deploy/simple-0.1.0.tgz
+    - simple-0.1.0.tgz
     version: 0.1.0
-generated: "2022-04-13T23:51:27.8255192-05:00"
+generated: "2022-04-14T22:09:59.7892053-05:00"

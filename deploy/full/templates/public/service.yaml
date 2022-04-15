@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: k8s-{{ .Values.projectName }}
+  name: {{ .Release.Name }}-public
 spec:
   type: NodePort
   selector:
-    app: {{ .Values.projectName }}
+    app: {{ .Release.Name }}
     tier: public
   ports:
   - protocol: TCP

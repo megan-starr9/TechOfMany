@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Values.projectName }}-ingress
+  name: {{ .Release.Name }}-ingress
   annotations:
     # use the shared ingress-nginx
     kubernetes.io/ingress.class: "nginx"
@@ -14,7 +14,7 @@ spec:
         path: /
         backend:
           service:
-            name: k8s-{{ .Values.projectName }}-admin
+            name: {{ .Release.Name }}-admin
             port:
               number: {{ .Values.admin.port }}
   - host: {{ .Values.public.domain }}
@@ -24,6 +24,6 @@ spec:
         path: /
         backend:
           service:
-            name: k8s-{{ .Values.projectName }}
+            name: {{ .Release.Name }}-public
             port:
               number: {{ .Values.public.port }}
