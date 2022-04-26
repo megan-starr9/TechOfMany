@@ -1,0 +1,7 @@
+version: '3.8'
+
+services:
+  db_backup:
+    build:
+      context: ./jobs/db_backup
+    image: ${CONTAINER_REGISTRY}/db_backup:${VERSION}
