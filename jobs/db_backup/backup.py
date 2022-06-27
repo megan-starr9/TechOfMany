@@ -1,15 +1,16 @@
-import os, argparse
-from mongodb.s3 import backup as backupMongoToS3
-from mysql.s3 import backup as backupMysqlToS3
+import os, argparse, logging
+from lib.mongodb_dump import mongodb_dump
+from lib.mysql_dump import mysql_dump
+from lib.s3_upload import s3_upload
 
 parser = argparse.ArgumentParser(description='Backup some databases')
 parser.add_argument('databases',
-        type=str,
-        required=True,
-        help='Databases to backup'
-        nargs='+')
+    type=str,
+    help='Databases to backup',
+    nargs='+'
+)
 parser.add_argument('--s3',
-    action='store_true'
+    action='store_true',
     help='Flag denoting that database should be backed up to s3'
 )
 parser.add_argument('-t', '--type',
@@ -17,17 +18,19 @@ parser.add_argument('-t', '--type',
     help='Type of database'
 )
 
-def s3_backup(type, database):
+def create_dump_file(type, database):
     match type:
         case 'mysql':
-            return backupMysqlToS3(database)
+            return mysql_dump(database)
         case 'mongo':
-            return backupMongoToS3(database)
+            return mongodb_dump(database)
 
-def main(args):
+def main():
+    args = parser.parse_args()
     for database in args.databases:
+        filename = create_dump_file(args.type, database)
         if args.s3:
-            s3_backup(args.type, database)
+            s3_upload(filename)
         else:
             logging.info('No local backup available (yet)')
 

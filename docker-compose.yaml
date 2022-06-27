@@ -4,4 +4,4 @@ services:
   db_backup:
     build:
       context: ./jobs/db_backup
-    image: ${CONTAINER_REGISTRY}/db_backup:${VERSION}
+    image: ${CONTAINER_REGISTRY}/techofmany_db_backup:${VERSION}
